@@ -1,4 +1,3 @@
-import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
@@ -6,7 +5,6 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.input.KeyStroke;
 
-import javax.swing.*;
 import java.io.IOException;
 
 public class Game {
@@ -49,16 +47,16 @@ public class Game {
     private void processKey(KeyStroke key) {
         System.out.println(key);
         if(key.getKeyType() == KeyType.ArrowUp) {
-            this.hero.moveUp();
+            moveHero(hero.moveUp());
         }
         else if(key.getKeyType() == KeyType.ArrowDown) {
-            this.hero.moveDown();
+            moveHero(hero.moveDown());
         }
         else if(key.getKeyType() == KeyType.ArrowLeft) {
-            this.hero.moveLeft();
+            moveHero(hero.moveLeft());
         }
         else if (key.getKeyType() == KeyType.ArrowRight) {
-            this.hero.moveRight();
+            moveHero(hero.moveRight());
         }
         else if (key.getKeyType() == KeyType.Character && key.getCharacter()=='q') {
             try {
@@ -67,6 +65,9 @@ public class Game {
                 e.printStackTrace();
             }
         }
+    }
 
+    private void moveHero(Position position) {
+        hero.setPosition(position);
     }
 }
